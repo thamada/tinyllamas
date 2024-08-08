@@ -1,7 +1,13 @@
 #!/usr/bin/env python3
+'''
+RMS_ATT_WEIGHT: 
+  TYPE : List[float]
+  LEN  : dim * n_layers: 288 * 6 -> 1728
+'''
 
 from typing import List
 from config import config
+
 
 '''
 token_embedding_table: List[float]
