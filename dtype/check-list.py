@@ -2,18 +2,20 @@
 import time
 import random
 import sys
-import numpy as np
-from memory_profiler  import profile
 
+def getSize(array_byte):
+    mb =  array_byte / (1024.*1024.)
+    print ("%d Mbyte" %  mb, flush=True) 
 
-
-@profile
 def init():
+    array_byte = 0
 
     random.seed(time.time())
-    n_list = 1024 * 1024 * 1024
 
-    z = np.zeros(n_list, dtype=float)
+    n_list = 1024 * 1024 * 1024
+    z = [0.] * n_list
+
+    array_byte += sys.getsizeof(z)
 
     print ('start for')
     for i in range(n_list):
@@ -22,12 +24,10 @@ def init():
             print('|', end='', flush=True)
 
         if 0 == i % 10000000:
-            print ('', flush=True)
-            print ("%d byte" %  sys.getsizeof(z), flush=True)
-            print ("%d byte" %  z.nbytes, flush=True)
-
+            getSize(array_byte)
 
         x = random.random()
+        array_byte += sys.getsizeof(x)
         z[i] = x
 
 
@@ -43,7 +43,5 @@ if __name__ == "__main__":
 
     print ('-'*100, flush=True)
 
-    '''
     while True:
         time.sleep(100000)
-    '''
