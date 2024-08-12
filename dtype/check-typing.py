@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 import time
 import random
-
 from typing import List
+from memory_profiler  import profile
 
-
+@profile
 def init() ->  List[float]:
 
     random.seed(time.time())
-    n_list = 1024 * 1024 * 1024
+    n_list = 1024 * 1024 #* 1024
     z = [0.] * n_list
 
     print ('start for')
@@ -32,5 +32,3 @@ if __name__ == "__main__":
         print (v[i])
 
     print ('-'*100, flush=True)
-    while True:
-        time.sleep(100000)
